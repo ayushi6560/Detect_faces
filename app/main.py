@@ -8,6 +8,7 @@ from PIL import Image
 
 app = Flask(__name__)
 
+
 def detect_faces(image_path):
     pixels = imread(image_path)
 
@@ -41,19 +42,19 @@ def detect_face():
     print("detect_faces")
     if request.method == 'POST':
         img = request.files['my_image']
-        img_path = "./static/" + img.filename
+        img_path = "./app/static/" + img.filename
         
         img.save(img_path)
 
         detect = detect_faces(img_path)
-    return render_template("index.html",detection = detect, img_path = img_path)
+
+        user_path = "../static/"+ img.filename
+    return render_template("index.html",detection = detect, img_path = user_path)
 
 
 
 
 
-if __name__=="__main__":
-    app.run(debug=True)
 
 
 
